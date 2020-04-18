@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 // Palette defines the color used.

@@ -18,8 +18,8 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/maruel/panicparse/internal/internaltest"
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/internal/internaltest"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 func TestProcess(t *testing.T) {

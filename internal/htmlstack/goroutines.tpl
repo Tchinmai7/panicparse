@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", ready);
     <li>GOMAXPROCS: {{.GOMAXPROCS}}</li>
     {{- if .NeedsEnv -}}
       <li>To see all goroutines, visit <a
-      href=https://github.com/maruel/panicparse#gotraceback>github.com/maruel/panicparse</a></li>
+      href=https://github.com/Tchinmai7/panicparse#gotraceback>github.com/Tchinmai7/panicparse</a></li>
     {{- end -}}
   </ul>
 </div>

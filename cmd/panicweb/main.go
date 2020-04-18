@@ -25,8 +25,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/maruel/panicparse/cmd/panicweb/internal"
-	"github.com/maruel/panicparse/stack/webstack"
+	"github.com/Tchinmai7/panicparse/cmd/panicweb/internal"
+	"github.com/Tchinmai7/panicparse/stack/webstack"
 	"github.com/mattn/go-colorable"
 )
 

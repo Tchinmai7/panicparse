@@ -19,7 +19,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/maruel/panicparse/internal/internaltest"
+	"github.com/Tchinmai7/panicparse/internal/internaltest"
 )
 
 func TestParseDumpNothing(t *testing.T) {
@@ -38,7 +38,7 @@ func TestParseDump1(t *testing.T) {
 	t.Parallel()
 	// One call from main, one from stdlib, one from third party.
 	// Create a long first line that will be ignored. It is to guard against
-	// https://github.com/maruel/panicparse/issues/17.
+	// https://github.com/Tchinmai7/panicparse/issues/17.
 	long := strings.Repeat("a", bufio.MaxScanTokenSize+1)
 	data := []string{
 		long,
@@ -52,7 +52,7 @@ func TestParseDump1(t *testing.T) {
 		"reflect.Value.assignTo(0x570860, 0xc20803f3e0, 0x15)",
 		"	/goroot/src/reflect/value.go:2125 +0x368",
 		"main.main()",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:428 +0x27",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:428 +0x27",
 		"",
 	}
 	extra := &bytes.Buffer{}
@@ -83,7 +83,7 @@ func TestParseDump1(t *testing.T) {
 						newCall(
 							"main.main",
 							Args{},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							428),
 					},
 				},
@@ -263,20 +263,20 @@ func TestParseDumpLineErr(t *testing.T) {
 		"panic: reflect.Set: value of type",
 		"",
 		"goroutine 1 [running]:",
-		"github.com/maruel/panicparse/stack/stack.recurseType()",
-		"\t/gopath/src/github.com/maruel/panicparse/stack/stack.go:12345678901234567890",
+		"github.com/Tchinmai7/panicparse/stack/stack.recurseType()",
+		"\t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:12345678901234567890",
 		"",
 	}
 	extra := &bytes.Buffer{}
 	c, err := ParseDump(bytes.NewBufferString(strings.Join(data, "\n")), extra, false)
-	compareErr(t, errors.New("failed to parse int on line: \"/gopath/src/github.com/maruel/panicparse/stack/stack.go:12345678901234567890\""), err)
+	compareErr(t, errors.New("failed to parse int on line: \"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:12345678901234567890\""), err)
 	want := []*Goroutine{
 		{
 			Signature: Signature{
 				State: "running",
 				Stack: Stack{
 					Calls: []Call{
-						newCall("github.com/maruel/panicparse/stack/stack.recurseType", Args{}, "", 0),
+						newCall("github.com/Tchinmai7/panicparse/stack/stack.recurseType", Args{}, "", 0),
 					},
 				},
 			},
@@ -296,8 +296,8 @@ func TestParseDumpCreatedErr(t *testing.T) {
 		"panic: reflect.Set: value of type",
 		"",
 		"goroutine 1 [running]:",
-		"github.com/maruel/panicparse/stack/stack.recurseType()",
-		"\t/gopath/src/github.com/maruel/panicparse/stack/stack.go:1",
+		"github.com/Tchinmai7/panicparse/stack/stack.recurseType()",
+		"\t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:1",
 		"created by testing.RunTests",
 		"\t/goroot/src/testing/testing.go:123456789012345678901 +0xa8b",
 		"",
@@ -313,9 +313,9 @@ func TestParseDumpCreatedErr(t *testing.T) {
 				Stack: Stack{
 					Calls: []Call{
 						newCall(
-							"github.com/maruel/panicparse/stack/stack.recurseType",
+							"github.com/Tchinmai7/panicparse/stack/stack.recurseType",
 							Args{},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							1),
 					},
 				},
@@ -333,20 +333,20 @@ func TestParseDumpValueErr(t *testing.T) {
 		"panic: reflect.Set: value of type",
 		"",
 		"goroutine 1 [running]:",
-		"github.com/maruel/panicparse/stack/stack.recurseType(123456789012345678901)",
-		"\t/gopath/src/github.com/maruel/panicparse/stack/stack.go:9",
+		"github.com/Tchinmai7/panicparse/stack/stack.recurseType(123456789012345678901)",
+		"\t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:9",
 		"",
 	}
 	extra := &bytes.Buffer{}
 	c, err := ParseDump(bytes.NewBufferString(strings.Join(data, "\n")), extra, false)
-	compareErr(t, errors.New("failed to parse int on line: \"github.com/maruel/panicparse/stack/stack.recurseType(123456789012345678901)\""), err)
+	compareErr(t, errors.New("failed to parse int on line: \"github.com/Tchinmai7/panicparse/stack/stack.recurseType(123456789012345678901)\""), err)
 	want := []*Goroutine{
 		{
 			Signature: Signature{
 				State: "running",
 				Stack: Stack{
 					Calls: []Call{
-						newCall("github.com/maruel/panicparse/stack/stack.recurseType", Args{}, "", 0),
+						newCall("github.com/Tchinmai7/panicparse/stack/stack.recurseType", Args{}, "", 0),
 					},
 				},
 			},
@@ -364,20 +364,20 @@ func TestParseDumpInconsistentIndent(t *testing.T) {
 	t.Parallel()
 	data := []string{
 		"  goroutine 1 [running]:",
-		"  github.com/maruel/panicparse/stack/stack.recurseType()",
-		" \t/gopath/src/github.com/maruel/panicparse/stack/stack.go:1",
+		"  github.com/Tchinmai7/panicparse/stack/stack.recurseType()",
+		" \t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:1",
 		"",
 	}
 	extra := &bytes.Buffer{}
 	c, err := ParseDump(bytes.NewBufferString(strings.Join(data, "\n")), extra, false)
-	compareErr(t, errors.New(`inconsistent indentation: " \t/gopath/src/github.com/maruel/panicparse/stack/stack.go:1", expected "  "`), err)
+	compareErr(t, errors.New(`inconsistent indentation: " \t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:1", expected "  "`), err)
 	want := []*Goroutine{
 		{
 			Signature: Signature{
 				State: "running",
 				Stack: Stack{
 					Calls: []Call{
-						newCall("github.com/maruel/panicparse/stack/stack.recurseType", Args{}, "", 0),
+						newCall("github.com/Tchinmai7/panicparse/stack/stack.recurseType", Args{}, "", 0),
 					},
 				},
 			},
@@ -420,8 +420,8 @@ func TestParseDumpElided(t *testing.T) {
 		"panic: reflect.Set: value of type",
 		"",
 		"goroutine 16 [garbage collection]:",
-		"github.com/maruel/panicparse/stack/stack.recurseType(0x7f4fa9a3ec70, 0xc208062580, 0x7f4fa9a3e818, 0x50a820, 0xc20803a8a0)",
-		"\t/gopath/src/github.com/maruel/panicparse/stack/stack.go:53 +0x845 fp=0xc20cfc66d8 sp=0xc20cfc6470",
+		"github.com/Tchinmai7/panicparse/stack/stack.recurseType(0x7f4fa9a3ec70, 0xc208062580, 0x7f4fa9a3e818, 0x50a820, 0xc20803a8a0)",
+		"\t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:53 +0x845 fp=0xc20cfc66d8 sp=0xc20cfc6470",
 		"...additional frames elided...",
 		"created by testing.RunTests",
 		"\t/goroot/src/testing/testing.go:555 +0xa8b",
@@ -444,7 +444,7 @@ func TestParseDumpElided(t *testing.T) {
 				Stack: Stack{
 					Calls: []Call{
 						newCall(
-							"github.com/maruel/panicparse/stack/stack.recurseType",
+							"github.com/Tchinmai7/panicparse/stack/stack.recurseType",
 							Args{
 								Values: []Arg{
 									{Value: 0x7f4fa9a3ec70},
@@ -454,7 +454,7 @@ func TestParseDumpElided(t *testing.T) {
 									{Value: 0xc20803a8a0},
 								},
 							},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							53),
 					},
 					Elided: true,
@@ -546,8 +546,8 @@ func TestParseDumpUnavailCreated(t *testing.T) {
 		"",
 		"goroutine 24 [running]:",
 		"\tgoroutine running on other thread; stack unavailable",
-		"created by github.com/maruel/panicparse/stack.New",
-		"\t/gopath/src/github.com/maruel/panicparse/stack/stack.go:131 +0x381",
+		"created by github.com/Tchinmai7/panicparse/stack.New",
+		"\t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:131 +0x381",
 		"",
 	}
 	extra := &bytes.Buffer{}
@@ -560,9 +560,9 @@ func TestParseDumpUnavailCreated(t *testing.T) {
 			Signature: Signature{
 				State: "running",
 				CreatedBy: newCall(
-					"github.com/maruel/panicparse/stack.New",
+					"github.com/Tchinmai7/panicparse/stack.New",
 					Args{},
-					"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+					"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 					131),
 				Stack: Stack{
 					Calls: []Call{newCall("", Args{}, "<unavailable>", 0)},
@@ -641,10 +641,10 @@ func TestParseDumpNoOffset(t *testing.T) {
 		"panic: runtime error: index out of range",
 		"",
 		"goroutine 37 [runnable]:",
-		"github.com/maruel/panicparse/stack.func·002()",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:110",
-		"created by github.com/maruel/panicparse/stack.New",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:113 +0x43b",
+		"github.com/Tchinmai7/panicparse/stack.func·002()",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:110",
+		"created by github.com/Tchinmai7/panicparse/stack.New",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:113 +0x43b",
 		"",
 	}
 	c, err := ParseDump(bytes.NewBufferString(strings.Join(data, "\n")), ioutil.Discard, false)
@@ -656,16 +656,16 @@ func TestParseDumpNoOffset(t *testing.T) {
 			Signature: Signature{
 				State: "runnable",
 				CreatedBy: newCall(
-					"github.com/maruel/panicparse/stack.New",
+					"github.com/Tchinmai7/panicparse/stack.New",
 					Args{},
-					"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+					"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 					113),
 				Stack: Stack{
 					Calls: []Call{
 						newCall(
-							"github.com/maruel/panicparse/stack.func·002",
+							"github.com/Tchinmai7/panicparse/stack.func·002",
 							Args{},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							110),
 					},
 				},
@@ -707,7 +707,7 @@ func TestParseDumpFileError(t *testing.T) {
 		"panic: reflect.Set: value of type",
 		"",
 		"goroutine 1 [running]:",
-		"github.com/maruel/panicparse/stack.func·002()",
+		"github.com/Tchinmai7/panicparse/stack.func·002()",
 		"junk",
 	}
 	extra := &bytes.Buffer{}
@@ -719,7 +719,7 @@ func TestParseDumpFileError(t *testing.T) {
 				State: "running",
 				Stack: Stack{
 					Calls: []Call{
-						newCall("github.com/maruel/panicparse/stack.func·002", Args{}, "", 0),
+						newCall("github.com/Tchinmai7/panicparse/stack.func·002", Args{}, "", 0),
 					},
 				},
 			},
@@ -738,10 +738,10 @@ func TestParseDumpCreated(t *testing.T) {
 		"panic: reflect.Set: value of type",
 		"",
 		"goroutine 1 [running]:",
-		"github.com/maruel/panicparse/stack.func·002()",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:110",
-		"created by github.com/maruel/panicparse/stack.New",
-		"\t/gopath/src/github.com/maruel/panicparse/stack/stack.go:131 +0x381",
+		"github.com/Tchinmai7/panicparse/stack.func·002()",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:110",
+		"created by github.com/Tchinmai7/panicparse/stack.New",
+		"\t/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:131 +0x381",
 		"exit status 2",
 	}
 	extra := &bytes.Buffer{}
@@ -754,16 +754,16 @@ func TestParseDumpCreated(t *testing.T) {
 			Signature: Signature{
 				State: "running",
 				CreatedBy: newCall(
-					"github.com/maruel/panicparse/stack.New",
+					"github.com/Tchinmai7/panicparse/stack.New",
 					Args{},
-					"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+					"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 					131),
 				Stack: Stack{
 					Calls: []Call{
 						newCall(
-							"github.com/maruel/panicparse/stack.func·002",
+							"github.com/Tchinmai7/panicparse/stack.func·002",
 							Args{},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							110),
 					},
 				},
@@ -783,9 +783,9 @@ func TestParseDumpCreatedError(t *testing.T) {
 		"panic: reflect.Set: value of type",
 		"",
 		"goroutine 1 [running]:",
-		"github.com/maruel/panicparse/stack.func·002()",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:110",
-		"created by github.com/maruel/panicparse/stack.New",
+		"github.com/Tchinmai7/panicparse/stack.func·002()",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:110",
+		"created by github.com/Tchinmai7/panicparse/stack.New",
 		"junk",
 	}
 	extra := &bytes.Buffer{}
@@ -795,13 +795,13 @@ func TestParseDumpCreatedError(t *testing.T) {
 		{
 			Signature: Signature{
 				State:     "running",
-				CreatedBy: newCall("github.com/maruel/panicparse/stack.New", Args{}, "", 0),
+				CreatedBy: newCall("github.com/Tchinmai7/panicparse/stack.New", Args{}, "", 0),
 				Stack: Stack{
 					Calls: []Call{
 						newCall(
-							"github.com/maruel/panicparse/stack.func·002",
+							"github.com/Tchinmai7/panicparse/stack.func·002",
 							Args{},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							110),
 					},
 				},
@@ -906,7 +906,7 @@ func TestParseDumpWithCarriageReturn(t *testing.T) {
 		"reflect.Value.assignTo(0x570860, 0xc20803f3e0, 0x15)",
 		"	/goroot/src/reflect/value.go:2125 +0x368",
 		"main.main()",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:428 +0x27",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:428 +0x27",
 		"",
 	}
 
@@ -938,7 +938,7 @@ func TestParseDumpWithCarriageReturn(t *testing.T) {
 						newCall(
 							"main.main",
 							Args{},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							428),
 					},
 				},
@@ -956,20 +956,20 @@ func TestParseDumpIndented(t *testing.T) {
 	data := []string{
 		"Failures:",
 		"",
-		"  * /home/maruel/go/src/foo/bar_test.go",
+		"  * /home/Tchinmai7/go/src/foo/bar_test.go",
 		"  Line 209:",
 		"  Expected: '(*errors.errorString){s:\"context canceled\"}'",
 		"  Actual:   'nil'",
 		"  (Should resemble)!",
 		"  goroutine 8 [running]:",
 		"  foo/bar.TestArchiveFail.func1.2()",
-		"        /home/maruel/go/foo/bar_test.go:209 +0x469",
+		"        /home/Tchinmai7/go/foo/bar_test.go:209 +0x469",
 		"  foo/bar.TestArchiveFail(0xc000338200)",
-		"        /home/maruel/go/src/foo/bar_test.go:155 +0xf1",
+		"        /home/Tchinmai7/go/src/foo/bar_test.go:155 +0xf1",
 		"  testing.tRunner(0xc000338200, 0x1615bf8)",
-		"        /home/maruel/golang/go/src/testing/testing.go:865 +0xc0",
+		"        /home/Tchinmai7/golang/go/src/testing/testing.go:865 +0xc0",
 		"  created by testing.(*T).Run",
-		"        /home/maruel/golang/go/src/testing/testing.go:916 +0x35a",
+		"        /home/Tchinmai7/golang/go/src/testing/testing.go:916 +0x35a",
 		"",
 		"",
 	}
@@ -986,24 +986,24 @@ func TestParseDumpIndented(t *testing.T) {
 				CreatedBy: newCall(
 					"testing.(*T).Run",
 					Args{},
-					"/home/maruel/golang/go/src/testing/testing.go",
+					"/home/Tchinmai7/golang/go/src/testing/testing.go",
 					916),
 				Stack: Stack{
 					Calls: []Call{
 						newCall(
 							"foo/bar.TestArchiveFail.func1.2",
 							Args{},
-							"/home/maruel/go/foo/bar_test.go",
+							"/home/Tchinmai7/go/foo/bar_test.go",
 							209),
 						newCall(
 							"foo/bar.TestArchiveFail",
 							Args{Values: []Arg{{Value: 0xc000338200, Name: "#1"}}},
-							"/home/maruel/go/src/foo/bar_test.go",
+							"/home/Tchinmai7/go/src/foo/bar_test.go",
 							155),
 						newCall(
 							"testing.tRunner",
 							Args{Values: []Arg{{Value: 0xc000338200, Name: "#1"}, {Value: 0x1615bf8}}},
-							"/home/maruel/golang/go/src/testing/testing.go",
+							"/home/Tchinmai7/golang/go/src/testing/testing.go",
 							865),
 					},
 				},
@@ -1023,23 +1023,23 @@ func TestParseDumpRace(t *testing.T) {
 		"WARNING: DATA RACE",
 		"Read at 0x00c0000e4030 by goroutine 7:",
 		"  main.panicRace.func1()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:37 +0x38",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:37 +0x38",
 		"",
 		"Previous write at 0x00c0000e4030 by goroutine 6:",
 		"  main.panicRace.func1()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:37 +0x4e",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:37 +0x4e",
 		"",
 		"Goroutine 7 (running) created at:",
 		"  main.panicRace()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:35 +0x88",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:35 +0x88",
 		"  main.main()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main.go:252 +0x2d9",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main.go:252 +0x2d9",
 		"",
 		"Goroutine 6 (running) created at:",
 		"  main.panicRace()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:35 +0x88",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:35 +0x88",
 		"  main.main()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main.go:252 +0x2d9",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main.go:252 +0x2d9",
 		"==================",
 		"",
 	}
@@ -1065,23 +1065,23 @@ func TestRaceManual(t *testing.T) {
 		"WARNING: DATA RACE",
 		"Read at 0x00c0000e4030 by goroutine 7:",
 		"  main.panicRace.func1()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:37 +0x38",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:37 +0x38",
 		"",
 		"Previous write at 0x00c0000e4030 by goroutine 6:",
 		"  main.panicRace.func1()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:37 +0x4e",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:37 +0x4e",
 		"",
 		"Goroutine 7 (running) created at:",
 		"  main.panicRace()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:35 +0x88",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:35 +0x88",
 		"  main.main()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main.go:252 +0x2d9",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main.go:252 +0x2d9",
 		"",
 		"Goroutine 6 (running) created at:",
 		"  main.panicRace()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main_race.go:35 +0x88",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main_race.go:35 +0x88",
 		"  main.main()",
-		"      /go/src/github.com/maruel/panicparse/cmd/panic/main.go:252 +0x2d9",
+		"      /go/src/github.com/Tchinmai7/panicparse/cmd/panic/main.go:252 +0x2d9",
 		"==================",
 		"",
 	}
@@ -1095,7 +1095,7 @@ func TestRaceManual(t *testing.T) {
 						newCall(
 							"main.panicRace",
 							Args{},
-							"/go/src/github.com/maruel/panicparse/cmd/panic/main.go",
+							"/go/src/github.com/Tchinmai7/panicparse/cmd/panic/main.go",
 							252),
 					},
 				},
@@ -1111,7 +1111,7 @@ func TestRaceManual(t *testing.T) {
 						newCall(
 							"main.panicRace",
 							Args{},
-							"/go/src/github.com/maruel/panicparse/cmd/panic/main.go",
+							"/go/src/github.com/Tchinmai7/panicparse/cmd/panic/main.go",
 							252),
 					},
 				},
@@ -1197,7 +1197,7 @@ func TestPanic(t *testing.T) {
 				t.Fatal(err)
 			}
 			if cmd == "race" {
-				// TODO(maruel): Fix this.
+				// TODO(Tchinmai7): Fix this.
 				if c != nil {
 					t.Fatal("unexpected context")
 				}
@@ -1277,7 +1277,7 @@ func testPanicMismatched(t *testing.T, c *Context, b *bytes.Buffer, ppDir string
 							//
 							// Here the package name is "correct". There is no way to deduce
 							// this from the stack trace.
-							"github.com/maruel/panicparse/cmd/panic/internal/incorrect.Panic",
+							"github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect.Panic",
 							Args{},
 							pathJoin(ppDir, "internal", "incorrect", "correct.go"),
 							7),
@@ -1340,7 +1340,7 @@ func testPanicUTF8(t *testing.T, c *Context, b *bytes.Buffer, ppDir string) {
 							// This is important to note here the inconsistency in the Go
 							// runtime stack generator. The path is escaped, but symbols are
 							// not.
-							"github.com/maruel/panicparse/cmd/panic/internal/%c3%b9tf8.(*Strùct).Pànic",
+							"github.com/Tchinmai7/panicparse/cmd/panic/internal/%c3%b9tf8.(*Strùct).Pànic",
 							Args{Values: []Arg{{Value: 0xc0000b2e48}}},
 							// See TestCallUTF8 in stack_test.go for exercising the methods on
 							// Call in this situation.
@@ -1500,7 +1500,7 @@ func identifyPanicwebSignature(t *testing.T, b *Bucket, pwebDir string) panicweb
 			t.Fatalf("suspicious: %#v", b)
 			return pstUnknown
 		}
-		if b.Stack.Calls[0].ImportPath() != "github.com/maruel/panicparse/cmd/panicweb/internal" {
+		if b.Stack.Calls[0].ImportPath() != "github.com/Tchinmai7/panicparse/cmd/panicweb/internal" {
 			t.Fatalf("suspicious: %#v", b)
 			return pstUnknown
 		}
@@ -1525,7 +1525,7 @@ func identifyPanicwebSignature(t *testing.T, b *Bucket, pwebDir string) panicweb
 	// Find the client goroutine signatures. For the client, it is likely that
 	// they haven't all bucketed perfectly.
 	if b.CreatedBy.Func.PkgDotName() == "internal.GetAsync" {
-		// TODO(maruel): More checks.
+		// TODO(Tchinmai7): More checks.
 		return pstClient
 	}
 
@@ -1542,8 +1542,8 @@ func identifyPanicwebSignature(t *testing.T, b *Bucket, pwebDir string) panicweb
 			pkgPrefix := ""
 			if !internaltest.IsUsingModules() {
 				t.Logf("Using vendored")
-				pColorable = "src/github.com/maruel/panicparse/vendor/github.com/mattn/go-colorable/noncolorable.go"
-				pkgPrefix = "github.com/maruel/panicparse/vendor/"
+				pColorable = "src/github.com/Tchinmai7/panicparse/vendor/github.com/mattn/go-colorable/noncolorable.go"
+				pkgPrefix = "github.com/Tchinmai7/panicparse/vendor/"
 			} else {
 				t.Logf("Using go module")
 			}
@@ -1608,7 +1608,7 @@ func identifyPanicwebSignature(t *testing.T, b *Bucket, pwebDir string) panicweb
 			}
 			usingModules := internaltest.IsUsingModules()
 			if !usingModules {
-				fn = "github.com/maruel/panicparse/vendor/" + fn
+				fn = "github.com/Tchinmai7/panicparse/vendor/" + fn
 			}
 			if b.Stack.Calls[1].Func.Raw != fn {
 				t.Fatalf("expected %q, got %q", fn, b.Stack.Calls[1].Func.Raw)
@@ -1617,7 +1617,7 @@ func identifyPanicwebSignature(t *testing.T, b *Bucket, pwebDir string) panicweb
 			if !usingModules {
 				// Assert that there's no version by including the trailing / and that
 				// it's using the vendored version.
-				prefix = "github.com/maruel/panicparse/vendor/golang.org/x/sys/"
+				prefix = "github.com/Tchinmai7/panicparse/vendor/golang.org/x/sys/"
 			}
 			if !strings.HasPrefix(b.Stack.Calls[1].RelSrcPath, prefix) {
 				t.Fatalf("expected %q, got %q", prefix, b.Stack.Calls[1].RelSrcPath)

@@ -170,7 +170,7 @@ func build(tool string, race bool) string {
 	if race {
 		args = append(args, "-race")
 	}
-	path := "github.com/maruel/panicparse/cmd/"
+	path := "github.com/Tchinmai7/panicparse/cmd/"
 	c := exec.Command("go", append(args, path+tool)...)
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
@@ -222,11 +222,11 @@ created by net/http.(*Server).Serve
 
 goroutine 1 [chan receive, 2 minutes]:
 main.main()
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/main.go:78 +0x7be
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/main.go:78 +0x7be
 
 goroutine 34 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc000242000, 0xc000038300)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc000242000, 0xc000038300)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc000242000, 0xc000038300)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc000242000, 0xc000038300)
@@ -258,7 +258,7 @@ net/http.(*Server).Serve(0xc000194000, 0x923ee0, 0xc00000e440, 0x0, 0x0)
 net/http.Serve(0x923ee0, 0xc00000e440, 0x91bc00, 0xbf6e60, 0x0, 0x0)
 	/goroot/src/net/http/server.go:2468 +0x6e
 created by main.main
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/main.go:50 +0x3b7
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/main.go:50 +0x3b7
 
 goroutine 22 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f5224075ca8, 0x72, 0xffffffffffffffff)
@@ -291,10 +291,10 @@ io/ioutil.readAll(0x91bc60, 0xc000138440, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000174090)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000174090)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 20 [select, 2 minutes]:
 net/http.(*persistConn).readLoop(0xc000226480)
@@ -357,10 +357,10 @@ io/ioutil.readAll(0x91bc60, 0xc00028c040, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000280000)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000280000)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 56 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f5224075a08, 0x72, 0xffffffffffffffff)
@@ -393,8 +393,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 10 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0001940e0, 0xc000038500)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0001940e0, 0xc000038500)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0001940e0, 0xc000038500)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0001940e0, 0xc000038500)
@@ -455,8 +455,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 36 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002b8000, 0xc000038600)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002b8000, 0xc000038600)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0002b8000, 0xc000038600)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002b8000, 0xc000038600)
@@ -499,10 +499,10 @@ io/ioutil.readAll(0x91bc60, 0xc000190180, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0001ac090)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0001ac090)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 59 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f5224075768, 0x72, 0xffffffffffffffff)
@@ -535,10 +535,10 @@ io/ioutil.readAll(0x91bc60, 0xc00028c200, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0002801b0)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0002801b0)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 57 [select, 2 minutes]:
 net/http.(*persistConn).readLoop(0xc0001b6000)
@@ -553,8 +553,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 11 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc000314000, 0xc0001b2100)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc000314000, 0xc0001b2100)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc000314000, 0xc0001b2100)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc000314000, 0xc0001b2100)
@@ -597,10 +597,10 @@ io/ioutil.readAll(0x91bc60, 0xc000020ac0, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0002301b0)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0002301b0)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 67 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f5224075688, 0x72, 0xffffffffffffffff)
@@ -633,8 +633,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 41 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002420e0, 0xc0001b2200)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002420e0, 0xc0001b2200)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0002420e0, 0xc0001b2200)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002420e0, 0xc0001b2200)
@@ -659,8 +659,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 68 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002b80e0, 0xc00029e200)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002b80e0, 0xc00029e200)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0002b80e0, 0xc00029e200)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002b80e0, 0xc00029e200)
@@ -721,10 +721,10 @@ io/ioutil.readAll(0x91bc60, 0xc000020c40, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000230360)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000230360)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 98 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f52240753e8, 0x72, 0xffffffffffffffff)
@@ -757,10 +757,10 @@ io/ioutil.readAll(0x91bc60, 0xc00028c440, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000280360)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000280360)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 64 [select, 2 minutes]:
 net/http.(*persistConn).readLoop(0xc0002266c0)
@@ -775,8 +775,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 82 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0003aa000, 0xc00039e000)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0003aa000, 0xc00039e000)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0003aa000, 0xc00039e000)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0003aa000, 0xc00039e000)
@@ -807,8 +807,8 @@ created by net/http.(*connReader).startBackgroundRead
 	/goroot/src/net/http/server.go:674 +0xd0
 
 goroutine 104 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002b81c0, 0xc00029e400)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002b81c0, 0xc00029e400)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0002b81c0, 0xc00029e400)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002b81c0, 0xc00029e400)
@@ -833,8 +833,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 84 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002421c0, 0xc0001b2300)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0002421c0, 0xc0001b2300)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0002421c0, 0xc0001b2300)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002421c0, 0xc0001b2300)
@@ -895,10 +895,10 @@ io/ioutil.readAll(0x91bc60, 0xc000190480, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0001ac1b0)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0001ac1b0)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 48 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f5224039d48, 0x72, 0xffffffffffffffff)
@@ -979,10 +979,10 @@ io/ioutil.readAll(0x91bc60, 0xc000020d80, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000230510)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000230510)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 80 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f5224039e28, 0x72, 0xffffffffffffffff)
@@ -1015,10 +1015,10 @@ io/ioutil.readAll(0x91bc60, 0xc000020e80, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000230630)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc000230630)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 78 [select, 2 minutes]:
 net/http.(*persistConn).readLoop(0xc0002267e0)
@@ -1033,8 +1033,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 85 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0001941c0, 0xc00039e100)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL1Handler(0x9241a0, 0xc0001941c0, 0xc00039e100)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:43 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ee8, 0x9241a0, 0xc0001941c0, 0xc00039e100)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0001941c0, 0xc00039e100)
@@ -1052,11 +1052,11 @@ syscall.Syscall(0x23, 0xc000259fb8, 0xc000259fa8, 0x0, 0xc0001aab40, 0xc000259fa
 golang.org/x/sys/unix.Nanosleep(0xc000259fb8, 0xc000259fa8, 0x0, 0x1)
 	/gopath/pkg/mod/golang.org/x/sys@v0.0.0-20200223170610-d5e6a3e2c0ae/unix/zsyscall_linux_amd64.go:1160 +0x5f
 main.sysHang(...)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/main_unix.go:12
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/main_unix.go:12
 main.main.func1(0xc0001aab40)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/main.go:65 +0x71
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/main.go:65 +0x71
 created by main.main
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/main.go:63 +0x548
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/main.go:63 +0x548
 
 goroutine 49 [select, 2 minutes]:
 net/http.(*persistConn).readLoop(0xc000226900)
@@ -1071,8 +1071,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 86 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL2Handler(0x9241a0, 0xc0002422a0, 0xc000038b00)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:54 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL2Handler(0x9241a0, 0xc0002422a0, 0xc000038b00)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:54 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ef0, 0x9241a0, 0xc0002422a0, 0xc000038b00)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002422a0, 0xc000038b00)
@@ -1133,14 +1133,14 @@ io/ioutil.readAll(0x91bc60, 0xc000396240, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0003a6090)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0003a6090)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 119 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL2Handler(0x9241a0, 0xc0002b8380, 0xc00029e500)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:54 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL2Handler(0x9241a0, 0xc0002b8380, 0xc00029e500)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:54 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ef0, 0x9241a0, 0xc0002b8380, 0xc00029e500)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002b8380, 0xc00029e500)
@@ -1165,8 +1165,8 @@ created by net/http.(*Transport).dialConn
 	/goroot/src/net/http/transport.go:1648 +0xc7b
 
 goroutine 106 [chan receive, 2 minutes]:
-github.com/maruel/panicparse/cmd/panicweb/internal.URL2Handler(0x9241a0, 0xc0002b82a0, 0xc0001b2500)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:54 +0x229
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.URL2Handler(0x9241a0, 0xc0002b82a0, 0xc0001b2500)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:54 +0x229
 net/http.HandlerFunc.ServeHTTP(0x8a3ef0, 0x9241a0, 0xc0002b82a0, 0xc0001b2500)
 	/goroot/src/net/http/server.go:2012 +0x44
 net/http.(*ServeMux).ServeHTTP(0xbf6e60, 0x9241a0, 0xc0002b82a0, 0xc0001b2500)
@@ -1227,10 +1227,10 @@ io/ioutil.readAll(0x91bc60, 0xc000396300, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0003a61b0)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0003a61b0)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 133 [IO wait, 2 minutes]:
 internal/poll.runtime_pollWait(0x7f52240398e8, 0x72, 0xffffffffffffffff)
@@ -1263,10 +1263,10 @@ io/ioutil.readAll(0x91bc60, 0xc000190740, 0x200, 0x0, 0x0, 0x0, 0x0, 0x0)
 	/goroot/src/io/ioutil/ioutil.go:36 +0xe3
 io/ioutil.ReadAll(...)
 	/goroot/src/io/ioutil/ioutil.go:45
-github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0001ac3f0)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
-created by github.com/maruel/panicparse/cmd/panicweb/internal.GetAsync
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
+github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync.func1(0xc0001ac3f0)
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:26 +0x69
+created by github.com/Tchinmai7/panicparse/cmd/panicweb/internal.GetAsync
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/internal/internal.go:25 +0x79
 
 goroutine 131 [select, 2 minutes]:
 net/http.(*persistConn).readLoop(0xc0003c4120)
@@ -1300,11 +1300,11 @@ created by net/http.(*connReader).startBackgroundRead
 
 goroutine 95 [chan receive, 2 minutes, locked to thread]:
 main.(*writeHang).Write(0xc000398180, 0xc0003940bf, 0x1, 0x1, 0x1000000010000, 0xc0003a4360, 0x912ec0)
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/main.go:92 +0x58
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/main.go:92 +0x58
 github.com/mattn/go-colorable.(*NonColorable).Write(0xc000398190, 0xc0003940b8, 0x7, 0x7, 0x15, 0xc000024840, 0x11)
 	/gopath/pkg/mod/github.com/mattn/go-colorable@v0.1.6/noncolorable.go:30 +0x2ae
 created by main.main
-	/gopath/src/github.com/maruel/panicparse/cmd/panicweb/main.go:73 +0x68c
+	/gopath/src/github.com/Tchinmai7/panicparse/cmd/panicweb/main.go:73 +0x68c
 
 goroutine 226 [IO wait]:
 internal/poll.runtime_pollWait(0x7f5224039728, 0x72, 0xffffffffffffffff)

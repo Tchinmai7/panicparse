@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/maruel/panicparse/internal/internaltest"
+	"github.com/Tchinmai7/panicparse/internal/internaltest"
 )
 
 func TestAggregateNotAggressive(t *testing.T) {
@@ -22,11 +22,11 @@ func TestAggregateNotAggressive(t *testing.T) {
 		"",
 		"goroutine 6 [chan receive]:",
 		"main.func·001(0x11000000, 2)",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:72 +0x49",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:72 +0x49",
 		"",
 		"goroutine 7 [chan receive]:",
 		"main.func·001(0x21000000, 2)",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:72 +0x49",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:72 +0x49",
 		"",
 	}
 	c, err := ParseDump(bytes.NewBufferString(strings.Join(data, "\n")), ioutil.Discard, false)
@@ -42,7 +42,7 @@ func TestAggregateNotAggressive(t *testing.T) {
 						newCall(
 							"main.func·001",
 							Args{Values: []Arg{{Value: 0x11000000}, {Value: 2}}},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							72),
 					},
 				},
@@ -58,7 +58,7 @@ func TestAggregateNotAggressive(t *testing.T) {
 						newCall(
 							"main.func·001",
 							Args{Values: []Arg{{Value: 0x21000000, Name: "#1"}, {Value: 2}}},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							72),
 					},
 				},
@@ -77,15 +77,15 @@ func TestAggregateExactMatching(t *testing.T) {
 		"",
 		"goroutine 6 [chan receive]:",
 		"main.func·001()",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:72 +0x49",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:72 +0x49",
 		"created by main.mainImpl",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:74 +0xeb",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:74 +0xeb",
 		"",
 		"goroutine 7 [chan receive]:",
 		"main.func·001()",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:72 +0x49",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:72 +0x49",
 		"created by main.mainImpl",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:74 +0xeb",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:74 +0xeb",
 		"",
 	}
 	c, err := ParseDump(bytes.NewBufferString(strings.Join(data, "\n")), &bytes.Buffer{}, false)
@@ -99,14 +99,14 @@ func TestAggregateExactMatching(t *testing.T) {
 				CreatedBy: newCall(
 					"main.mainImpl",
 					Args{},
-					"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+					"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 					74),
 				Stack: Stack{
 					Calls: []Call{
 						newCall(
 							"main.func·001",
 							Args{},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							72),
 					},
 				},
@@ -126,15 +126,15 @@ func TestAggregateAggressive(t *testing.T) {
 		"",
 		"goroutine 6 [chan receive, 10 minutes]:",
 		"main.func·001(0x11000000, 2)",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:72 +0x49",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:72 +0x49",
 		"",
 		"goroutine 7 [chan receive, 50 minutes]:",
 		"main.func·001(0x21000000, 2)",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:72 +0x49",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:72 +0x49",
 		"",
 		"goroutine 8 [chan receive, 100 minutes]:",
 		"main.func·001(0x21000000, 2)",
-		"	/gopath/src/github.com/maruel/panicparse/stack/stack.go:72 +0x49",
+		"	/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go:72 +0x49",
 		"",
 	}
 	c, err := ParseDump(bytes.NewBufferString(strings.Join(data, "\n")), ioutil.Discard, false)
@@ -152,7 +152,7 @@ func TestAggregateAggressive(t *testing.T) {
 						newCall(
 							"main.func·001",
 							Args{Values: []Arg{{Value: 0x11000000, Name: "*"}, {Value: 2}}},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							72),
 					},
 				},

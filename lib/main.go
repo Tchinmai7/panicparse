@@ -6,7 +6,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 func formatCall(c *stack.Call) string {

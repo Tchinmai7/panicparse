@@ -167,10 +167,10 @@ func TestCallMain(t *testing.T) {
 	c := newCall(
 		"main.main",
 		Args{},
-		"/gopath/src/github.com/maruel/panicparse/cmd/pp/main.go",
+		"/gopath/src/github.com/Tchinmai7/panicparse/cmd/pp/main.go",
 		428)
 	// Call methods.
-	compareString(t, "/gopath/src/github.com/maruel/panicparse/cmd/pp/main.go:428", c.FullSrcLine())
+	compareString(t, "/gopath/src/github.com/Tchinmai7/panicparse/cmd/pp/main.go:428", c.FullSrcLine())
 	compareBool(t, true, c.IsPkgMain())
 	compareString(t, pathJoin("pp", "main.go"), c.PkgSrc())
 	compareString(t, "main.go:428", c.SrcLine())
@@ -186,72 +186,72 @@ func TestCallMain(t *testing.T) {
 
 	// ParseDump(guesspaths=true).
 	c.updateLocations("/goroot", "/goroot", map[string]string{"/gopath": "/gopath"})
-	compareString(t, "github.com/maruel/panicparse/cmd/pp", c.ImportPath())
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/pp", c.ImportPath())
 	compareBool(t, false, c.IsStdlib)
-	compareString(t, "/gopath/src/github.com/maruel/panicparse/cmd/pp/main.go", c.LocalSrcPath)
-	compareString(t, "github.com/maruel/panicparse/cmd/pp/main.go", c.RelSrcPath)
+	compareString(t, "/gopath/src/github.com/Tchinmai7/panicparse/cmd/pp/main.go", c.LocalSrcPath)
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/pp/main.go", c.RelSrcPath)
 }
 
 func TestCallMismatched(t *testing.T) {
 	t.Parallel()
 	// See testPanicMismatched in context_test.go.
 	c := newCall(
-		"github.com/maruel/panicparse/cmd/panic/internal/incorrect.Panic",
+		"github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect.Panic",
 		Args{},
-		"/gopath/src/github.com/maruel/panicparse/cmd/panic/internal/incorrect/correct.go",
+		"/gopath/src/github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect/correct.go",
 		7)
 	// Call methods.
-	compareString(t, "/gopath/src/github.com/maruel/panicparse/cmd/panic/internal/incorrect/correct.go:7", c.FullSrcLine())
+	compareString(t, "/gopath/src/github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect/correct.go:7", c.FullSrcLine())
 	compareBool(t, false, c.IsPkgMain())
 	compareString(t, pathJoin("incorrect", "correct.go"), c.PkgSrc())
 	compareString(t, "correct.go:7", c.SrcLine())
 	compareString(t, "correct.go", c.SrcName())
 
 	// Func methods.
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/incorrect", c.ImportPath())
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect", c.ImportPath())
 	compareBool(t, true, c.Func.IsExported())
 	compareString(t, "Panic", c.Func.Name())
 	compareString(t, "incorrect.Panic", c.Func.PkgDotName())
 	compareString(t, "incorrect", c.Func.PkgName())
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/incorrect.Panic", c.Func.String())
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect.Panic", c.Func.String())
 
 	// ParseDump(guesspaths=true).
 	c.updateLocations("/goroot", "/goroot", map[string]string{"/gopath": "/gopath"})
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/incorrect", c.ImportPath())
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect", c.ImportPath())
 	compareBool(t, false, c.IsStdlib)
-	compareString(t, "/gopath/src/github.com/maruel/panicparse/cmd/panic/internal/incorrect/correct.go", c.LocalSrcPath)
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/incorrect/correct.go", c.RelSrcPath)
+	compareString(t, "/gopath/src/github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect/correct.go", c.LocalSrcPath)
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect/correct.go", c.RelSrcPath)
 }
 
 func TestCallUTF8(t *testing.T) {
 	t.Parallel()
 	// See testPanicUTF8 in context_test.go.
 	c := newCall(
-		"github.com/maruel/panicparse/cmd/panic/internal/%c3%b9tf8.(*Strùct).Pànic",
+		"github.com/Tchinmai7/panicparse/cmd/panic/internal/%c3%b9tf8.(*Strùct).Pànic",
 		Args{Values: []Arg{{Value: 0xc0000b2e48}}},
-		"/gopath/src/github.com/maruel/panicparse/cmd/panic/internal/ùtf8/ùtf8.go",
+		"/gopath/src/github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8/ùtf8.go",
 		10)
 	// Call methods.
-	compareString(t, "/gopath/src/github.com/maruel/panicparse/cmd/panic/internal/ùtf8/ùtf8.go:10", c.FullSrcLine())
+	compareString(t, "/gopath/src/github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8/ùtf8.go:10", c.FullSrcLine())
 	compareBool(t, false, c.IsPkgMain())
 	compareString(t, pathJoin("ùtf8", "ùtf8.go"), c.PkgSrc())
 	compareString(t, "ùtf8.go:10", c.SrcLine())
 	compareString(t, "ùtf8.go", c.SrcName())
 
 	// Func methods.
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/ùtf8", c.ImportPath())
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8", c.ImportPath())
 	compareBool(t, true, c.Func.IsExported())
 	compareString(t, "(*Strùct).Pànic", c.Func.Name())
 	compareString(t, "ùtf8.(*Strùct).Pànic", c.Func.PkgDotName())
 	compareString(t, "ùtf8", c.Func.PkgName())
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/ùtf8.(*Strùct).Pànic", c.Func.String())
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8.(*Strùct).Pànic", c.Func.String())
 
 	// ParseDump(guesspaths=true).
 	c.updateLocations("/goroot", "/goroot", map[string]string{"/gopath": "/gopath"})
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/ùtf8", c.ImportPath())
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8", c.ImportPath())
 	compareBool(t, false, c.IsStdlib)
-	compareString(t, "/gopath/src/github.com/maruel/panicparse/cmd/panic/internal/ùtf8/ùtf8.go", c.LocalSrcPath)
-	compareString(t, "github.com/maruel/panicparse/cmd/panic/internal/ùtf8/ùtf8.go", c.RelSrcPath)
+	compareString(t, "/gopath/src/github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8/ùtf8.go", c.LocalSrcPath)
+	compareString(t, "github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8/ùtf8.go", c.RelSrcPath)
 }
 
 func TestCallC(t *testing.T) {
@@ -539,7 +539,7 @@ func getSignature() *Signature {
 				{
 					Func:    newFunc("main.func·001"),
 					Args:    Args{Values: []Arg{{Value: 0x11000000}, {Value: 2}}},
-					SrcPath: "/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+					SrcPath: "/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 					Line:    72,
 				},
 				{

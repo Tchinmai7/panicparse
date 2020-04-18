@@ -18,7 +18,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 // Write writes buckets as HTML to the writer.
@@ -119,7 +119,7 @@ func pkgURL(c *stack.Call) template.URL {
 
 // srcURL returns an URL to the sources.
 //
-// TODO(maruel): Support custom local godoc server as it serves files too.
+// TODO(Tchinmai7): Support custom local godoc server as it serves files too.
 func srcURL(c *stack.Call) template.URL {
 	url, _ := getSrcBranchURL(c)
 	return template.URL(url)
@@ -137,7 +137,7 @@ func escape(s string) template.URL {
 func getSrcBranchURL(c *stack.Call) (template.URL, template.URL) {
 	tag := ""
 	if c.IsStdlib {
-		// TODO(maruel): This is not strictly speaking correct. The remote could be
+		// TODO(Tchinmai7): This is not strictly speaking correct. The remote could be
 		// running a different Go version from the current executable.
 		tag = url.QueryEscape(runtime.Version())
 		return template.URL(fmt.Sprintf("https://github.com/golang/go/blob/%s/src/%s#L%d", tag, escape(c.RelSrcPath), c.Line)), template.URL(tag)

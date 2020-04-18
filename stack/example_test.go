@@ -10,7 +10,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 const crash = `panic: oh no!
@@ -19,9 +19,9 @@ goroutine 1 [running]:
 panic(0x0, 0x0)
 	/home/user/src/golang/src/runtime/panic.go:464 +0x3e6
 main.crash2(0x7fe50b49d028, 0xc82000a1e0)
-	/home/user/go/src/github.com/maruel/panicparse/cmd/pp/main.go:45 +0x23
+	/home/user/go/src/github.com/Tchinmai7/panicparse/cmd/pp/main.go:45 +0x23
 main.main()
-	/home/user/go/src/github.com/maruel/panicparse/cmd/pp/main.go:50 +0xa6
+	/home/user/go/src/github.com/Tchinmai7/panicparse/cmd/pp/main.go:50 +0xa6
 `
 
 func Example() {

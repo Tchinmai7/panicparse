@@ -599,7 +599,7 @@ func zapPointers(t *testing.T, name string, workaroundGo111Elided bool, want, s 
 			break
 		}
 		if workaroundGo111Elided && zapArguments() {
-			// See https://github.com/maruel/panicparse/issues/42 for explanation.
+			// See https://github.com/Tchinmai7/panicparse/issues/42 for explanation.
 			if len(want.Calls[i].Args.Values) != 0 {
 				want.Calls[i].Args.Elided = true
 			}

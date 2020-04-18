@@ -4,21 +4,21 @@ Parses panic stack traces, densifies and deduplicates goroutines with similar
 stack traces. Helps debugging crashes and deadlocks in heavily parallelized
 process.
 
-[![GoDoc](https://godoc.org/github.com/maruel/panicparse/stack?status.svg)](https://pkg.go.dev/github.com/maruel/panicparse/stack)
-[![Go Report Card](https://goreportcard.com/badge/github.com/maruel/panicparse)](https://goreportcard.com/report/github.com/maruel/panicparse)
-[![Coverage Status](https://codecov.io/gh/maruel/panicparse/graph/badge.svg)](https://codecov.io/gh/maruel/panicparse)
-[![Build Status](https://travis-ci.org/maruel/panicparse.svg)](https://travis-ci.org/maruel/panicparse)
+[![GoDoc](https://godoc.org/github.com/Tchinmai7/panicparse/stack?status.svg)](https://pkg.go.dev/github.com/Tchinmai7/panicparse/stack)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Tchinmai7/panicparse)](https://goreportcard.com/report/github.com/Tchinmai7/panicparse)
+[![Coverage Status](https://codecov.io/gh/Tchinmai7/panicparse/graph/badge.svg)](https://codecov.io/gh/Tchinmai7/panicparse)
+[![Build Status](https://travis-ci.org/Tchinmai7/panicparse.svg)](https://travis-ci.org/Tchinmai7/panicparse)
 
 
 panicparse helps make sense of Go crash dumps:
 
-![Screencast](https://raw.githubusercontent.com/wiki/maruel/panicparse/parse.gif "Screencast")
+![Screencast](https://raw.githubusercontent.com/wiki/Tchinmai7/panicparse/parse.gif "Screencast")
 
 
 ## Features
 
    * **New in v1.4.0!**:
-     [webstack.SnapshotHandler](https://pkg.go.dev/github.com/maruel/panicparse/stack/webstack#SnapshotHandler)
+     [webstack.SnapshotHandler](https://pkg.go.dev/github.com/Tchinmai7/panicparse/stack/webstack#SnapshotHandler)
      is a http handler that serves a very tight and swell snapshot of your
      goroutines, much more readable than
      [net/http/pprof](https://golang.org/pkg/net/http/pprof).
@@ -34,19 +34,19 @@ panicparse helps make sense of Go crash dumps:
 
 ### webstack in action
 
-![Screencast](https://raw.githubusercontent.com/wiki/maruel/panicparse/panicparse_webstack.gif "Screencast")
+![Screencast](https://raw.githubusercontent.com/wiki/Tchinmai7/panicparse/panicparse_webstack.gif "Screencast")
 
 
 ## Authors
 
 `panicparse` was created with ❤️️ and passion by [Marc-Antoine
-Ruel](https://github.com/maruel) and
-[friends](https://github.com/maruel/panicparse/graphs/contributors).
+Ruel](https://github.com/Tchinmai7) and
+[friends](https://github.com/Tchinmai7/panicparse/graphs/contributors).
 
 
 ## Installation
 
-    go get github.com/maruel/panicparse/cmd/pp
+    go get github.com/Tchinmai7/panicparse/cmd/pp
 
 
 ## Usage
@@ -158,7 +158,7 @@ you may be running the _Perl PAR Packager_ instead of panicparse.
 You have two choices, either you put `$GOPATH/bin` at the beginning of `$PATH`
 or use long name `panicparse` with:
 
-    go get github.com/maruel/panicparse
+    go get github.com/Tchinmai7/panicparse
 
 then using `panicparse` instead of `pp`:
 

@@ -7,16 +7,16 @@
 // It is a tool to help test pp, it is used in its unit tests.
 //
 // To install, run:
-//   go install github.com/maruel/panicparse/cmd/panic
+//   go install github.com/Tchinmai7/panicparse/cmd/panic
 //   panic -help
 //   panic str |& pp
 //
 // Some panics require the race detector with -race:
-//   go install -race github.com/maruel/panicparse/cmd/panic
+//   go install -race github.com/Tchinmai7/panicparse/cmd/panic
 //   panic race |& pp
 //
 // To use with inlining disabled, build with -gcflags '-l' like:
-//   go install -gcflags '-l' github.com/maruel/panicparse/cmd/panic
+//   go install -gcflags '-l' github.com/Tchinmai7/panicparse/cmd/panic
 package main
 
 // To add a new panic stack signature, add it to types type below, keeping the
@@ -35,9 +35,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/maruel/panicparse/cmd/panic/internal"
-	correct "github.com/maruel/panicparse/cmd/panic/internal/incorrect"
-	"github.com/maruel/panicparse/cmd/panic/internal/ùtf8"
+	"github.com/Tchinmai7/panicparse/cmd/panic/internal"
+	correct "github.com/Tchinmai7/panicparse/cmd/panic/internal/incorrect"
+	"github.com/Tchinmai7/panicparse/cmd/panic/internal/ùtf8"
 )
 
 func main() {
@@ -105,7 +105,7 @@ func recurse(i int) {
 func panicRaceDisabled() {
 	help := "'panic race' can only be used when built with the race detector.\n" +
 		"To build, use:\n" +
-		"  go install -race github.com/maruel/panicparse/cmd/panic\n"
+		"  go install -race github.com/Tchinmai7/panicparse/cmd/panic\n"
 	io.WriteString(stdErr, help)
 }
 
@@ -151,7 +151,7 @@ func panicRace() {
 //
 // Keep the list sorted.
 //
-// TODO(maruel): Figure out a way to reliably trigger "(scan)" output:
+// TODO(Tchinmai7): Figure out a way to reliably trigger "(scan)" output:
 // - disable automatic GC with runtime.SetGCPercent(-1)
 // - a goroutine with a large number of items in the stack
 // - large heap to make the scanning process slow enough
@@ -159,7 +159,7 @@ func panicRace() {
 // - panic in the meantime
 // This would still not be deterministic.
 //
-// TODO(maruel): Figure out a way to reliably trigger sleep output.
+// TODO(Tchinmai7): Figure out a way to reliably trigger sleep output.
 var types = map[string]struct {
 	desc string
 	f    func()
@@ -272,7 +272,7 @@ var types = map[string]struct {
 			// https://github.com/golang/go/issues/20588
 			//
 			// Repro:
-			//   go install -race github.com/maruel/panicparse/cmd/panic; panic asleep
+			//   go install -race github.com/Tchinmai7/panicparse/cmd/panic; panic asleep
 			var mu sync.Mutex
 			mu.Lock()
 			mu.Lock()

@@ -14,8 +14,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/maruel/panicparse/internal/internaltest"
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/internal/internaltest"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 func TestWrite2Buckets(t *testing.T) {
@@ -157,9 +157,9 @@ func TestGetSrcBranchURL(t *testing.T) {
 		{
 			"vendor",
 			newCallLocal(
-				"github.com/maruel/panicparse/vendor/golang.org/x/sys/unix.Nanosleep",
+				"github.com/Tchinmai7/panicparse/vendor/golang.org/x/sys/unix.Nanosleep",
 				stack.Args{},
-				"/home/user/go/src/github.com/maruel/panicparse/vendor/golang.org/x/sys/unix/zsyscall_linux_amd64.go",
+				"/home/user/go/src/github.com/Tchinmai7/panicparse/vendor/golang.org/x/sys/unix/zsyscall_linux_amd64.go",
 				1100),
 			"https://github.com/golang/sys/blob/master/unix/zsyscall_linux_amd64.go#L1100",
 			"master",
@@ -312,7 +312,7 @@ func getBuckets() []*stack.Bucket {
 						newCall(
 							"main.func·001",
 							stack.Args{Values: []stack.Arg{{Value: 0x11000000}, {Value: 2}}},
-							"/gopath/src/github.com/maruel/panicparse/stack/stack.go",
+							"/gopath/src/github.com/Tchinmai7/panicparse/stack/stack.go",
 							72),
 						{
 							Func:     newFunc("sliceInternal"),

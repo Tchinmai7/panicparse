@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 var testPalette = &Palette{

@@ -15,8 +15,8 @@ import (
 	"runtime"
 	"strconv"
 
-	"github.com/maruel/panicparse/internal/htmlstack"
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/internal/htmlstack"
+	"github.com/Tchinmai7/panicparse/stack"
 )
 
 // SnapshotHandler implements http.HandlerFunc to returns a panicparse HTML
@@ -114,7 +114,7 @@ func snapshot(maxmem int) (*stack.Context, error) {
 		}
 		buf = make([]byte, l)
 	}
-	// TODO(maruel): No disk I/O should be done here, albeit GOROOT should still
+	// TODO(Tchinmai7): No disk I/O should be done here, albeit GOROOT should still
 	// be guessed. Thus guesspaths shall be neither true nor false.
 	return stack.ParseDump(bytes.NewReader(buf), ioutil.Discard, true)
 }

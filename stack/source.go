@@ -123,7 +123,7 @@ func (p *parsedFile) getFuncAST(f string, l int) (d *ast.FuncDecl) {
 		// The line number in the stack trace line does not exist in the file. That
 		// can only mean that the sources on disk do not match the sources used to
 		// build the binary.
-		// TODO(maruel): This should be surfaced, so that source parsing is
+		// TODO(Tchinmai7): This should be surfaced, so that source parsing is
 		// completely ignored.
 		return
 	}
@@ -205,7 +205,7 @@ func fieldToType(f *ast.Field) (string, bool) {
 	case *ast.ChanType:
 		return fmt.Sprintf("chan %s", name(arg.Value)), false
 	default:
-		// TODO(maruel): Implement anything missing.
+		// TODO(Tchinmai7): Implement anything missing.
 		return "<unknown>", false
 	}
 }

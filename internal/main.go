@@ -28,8 +28,8 @@ import (
 	"regexp"
 	"syscall"
 
-	"github.com/maruel/panicparse/internal/htmlstack"
-	"github.com/maruel/panicparse/stack"
+	"github.com/Tchinmai7/panicparse/internal/htmlstack"
+	"github.com/Tchinmai7/panicparse/stack"
 	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"
 	"github.com/mgutz/ansi"
@@ -58,7 +58,7 @@ var defaultPalette = Palette{
 
 func writeToConsole(out io.Writer, p *Palette, buckets []*stack.Bucket, pf pathFormat, needsEnv bool, filter, match *regexp.Regexp) error {
 	if needsEnv {
-		_, _ = io.WriteString(out, "\nTo see all goroutines, visit https://github.com/maruel/panicparse#gotraceback\n\n")
+		_, _ = io.WriteString(out, "\nTo see all goroutines, visit https://github.com/Tchinmai7/panicparse#gotraceback\n\n")
 	}
 	srcLen, pkgLen := calcLengths(buckets, pf)
 	for _, bucket := range buckets {

@@ -99,7 +99,7 @@ const (
 
 // These are effectively constants.
 var (
-	// TODO(maruel): Handle corrupted stack cases:
+	// TODO(Tchinmai7): Handle corrupted stack cases:
 	// - missed stack barrier
 	// - found next stack barrier at 0x123; expected
 	// - runtime: unexpected return pc for FUNC_NAME called from 0x123
@@ -133,8 +133,8 @@ var (
 	// for the code generating these messages. Please note only the block in
 	//   #else  // #if !SANITIZER_GO
 	// is used.
-	// TODO(maruel): "    [failed to restore the stack]\n\n"
-	// TODO(maruel): "Global var %s of size %zu at %p declared at %s:%zu\n"
+	// TODO(Tchinmai7): "    [failed to restore the stack]\n\n"
+	// TODO(Tchinmai7): "Global var %s of size %zu at %p declared at %s:%zu\n"
 	reRaceOperationHeader             = regexp.MustCompile("^(Read|Write) at (0x[0-9a-f]+) by goroutine (\\d+):$")
 	reRacePreviousOperationHeader     = regexp.MustCompile("^Previous (read|write) at (0x[0-9a-f]+) by goroutine (\\d+):$")
 	reRacePreviousOperationMainHeader = regexp.MustCompile("^Previous (read|write) at (0x[0-9a-f]+) by main goroutine:$")
@@ -419,7 +419,7 @@ func (s *scanningState) scan(line string) (string, error) {
 		}
 		if elided == trimmed {
 			cur.Stack.Elided = true
-			// TODO(maruel): New state.
+			// TODO(Tchinmai7): New state.
 			return "", nil
 		}
 		c := Call{}
@@ -496,7 +496,7 @@ func (s *scanningState) scan(line string) (string, error) {
 	case gotRaceOperationHeader:
 		c := Call{}
 		if found, err := parseFunc(&c, trimmed); found {
-			// TODO(maruel): Figure out.
+			// TODO(Tchinmai7): Figure out.
 			//cur.Stack.Calls = append(cur.Stack.Calls, *call)
 			s.state = gotRaceOperationFunc
 			return "", err
@@ -518,7 +518,7 @@ func (s *scanningState) scan(line string) (string, error) {
 
 	case gotRaceOperationFunc:
 		// cur.Stack.Calls is guaranteed to have at least one item.
-		// TODO(maruel): Bug, should be cur.Stack.Calls[len(cur.Stack.Calls)-1] but
+		// TODO(Tchinmai7): Bug, should be cur.Stack.Calls[len(cur.Stack.Calls)-1] but
 		// s.goroutine isn't initialized properly.
 		c := Call{}
 		if found, err := parseFile(&c, trimmed); err != nil {
@@ -558,7 +558,7 @@ func (s *scanningState) scan(line string) (string, error) {
 		}
 		c := Call{}
 		if found, err := parseFunc(&c, strings.TrimLeft(trimmed, "\t ")); found {
-			// TODO(maruel): Process match.
+			// TODO(Tchinmai7): Process match.
 			s.state = gotRaceGoroutineFunc
 			return "", err
 		}
@@ -702,7 +702,7 @@ func splitPath(p string) []string {
 
 // isFile returns true if the path is a valid file.
 func isFile(p string) bool {
-	// TODO(maruel): Is it faster to open the file or to stat it? Worth a perf
+	// TODO(Tchinmai7): Is it faster to open the file or to stat it? Worth a perf
 	// test on Windows.
 	i, err := os.Stat(p)
 	return err == nil && !i.IsDir()
@@ -729,7 +729,7 @@ func (c *Context) findRoots() {
 	c.GOPATHs = map[string]string{}
 	//log.Printf("localgopaths: %v", c.localgopaths)
 	for _, f := range getFiles(c.Goroutines) {
-		// TODO(maruel): Could a stack dump have mixed cases? I think it's
+		// TODO(Tchinmai7): Could a stack dump have mixed cases? I think it's
 		// possible, need to confirm and handle.
 		//log.Printf("  Analyzing %s", f)
 		if c.GOROOT != "" && strings.HasPrefix(f, c.GOROOT+"/src/") {

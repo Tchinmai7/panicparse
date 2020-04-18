@@ -44,7 +44,7 @@ func (f *Func) String() string {
 // Methods are fully qualified, including the struct type.
 func (f *Func) Name() string {
 	// This works even on Windows as filepath.Base() splits also on "/".
-	// TODO(maruel): This code will fail on a source file with a dot in its name.
+	// TODO(Tchinmai7): This code will fail on a source file with a dot in its name.
 	parts := strings.SplitN(filepath.Base(f.Raw), ".", 2)
 	if len(parts) == 1 {
 		return parts[0]
@@ -104,7 +104,7 @@ func (f *Func) PkgDotName() string {
 // IsExported returns true if the function is exported.
 func (f *Func) IsExported() bool {
 	name := f.Name()
-	// TODO(maruel): Something like serverHandler.ServeHTTP in package net/host
+	// TODO(Tchinmai7): Something like serverHandler.ServeHTTP in package net/host
 	// should not be considered exported. We need something similar to the
 	// decoding done in symbol() in internal/htmlstack.
 	parts := strings.Split(name, ".")
@@ -356,7 +356,7 @@ func (c *Call) updateLocations(goroot, localgoroot string, gopaths map[string]st
 			goto done
 		}
 	}
-	// TODO(maruel): Sort for deterministic behavior?
+	// TODO(Tchinmai7): Sort for deterministic behavior?
 	for prefix, dest := range gopaths {
 		if p := prefix + "/src/"; strings.HasPrefix(c.SrcPath, p) {
 			c.RelSrcPath = c.SrcPath[len(p):]
@@ -568,7 +568,7 @@ func (s *Signature) merge(r *Signature) *Signature {
 		SleepMin:  min,
 		SleepMax:  max,
 		Stack:     *s.Stack.merge(&r.Stack),
-		Locked:    s.Locked || r.Locked, // TODO(maruel): This is weirdo.
+		Locked:    s.Locked || r.Locked, // TODO(Tchinmai7): This is weirdo.
 	}
 }
 
