@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"io"
@@ -22,8 +23,7 @@ func createdByString(s *stack.Signature) string {
 	return created + " @ " + formatCall(&s.CreatedBy)
 }
 
-func parseBucketHeader(bucket stack.Bucket, multipleBuckets bool) string {
-	pf := basePath
+func parseBucketHeader(bucket *stack.Bucket, multipleBuckets bool) string {
 	extra := ""
 	if s := bucket.SleepString(); s != "" {
 		extra += " [" + s + "]"
@@ -40,7 +40,7 @@ func parseBucketHeader(bucket stack.Bucket, multipleBuckets bool) string {
 func stackLines(signature *stack.Signature) string {
 	out := make([]string, len(signature.Stack.Calls))
 	for i, line := range signature.Stack.Calls {
-		out[i] = fmt.Sprintf("%s %s %s(%s)", line.Func.PkgName(), formatCall(line), line.Func.Name(), &line.Args)
+		out[i] = fmt.Sprintf("%s %s %s(%s)", line.Func.PkgName(), formatCall(&line), line.Func.Name(), &line.Args)
 	}
 	if signature.Stack.Elided {
 		out = append(out, "    (...)")
@@ -48,18 +48,31 @@ func stackLines(signature *stack.Signature) string {
 	return strings.Join(out, "\n") + "\n"
 }
 
-func ParsePanicString(stackTrace string, guessPaths bool) string {
+func ParsePanicString(stackTrace string, guessPaths bool) (string, error) {
 	r := strings.NewReader(stackTrace)
-	var writer bytes.Buffer
+	fmt.Printf(stackTrace)
+	var compressedString bytes.Buffer
+	writer := bufio.NewWriter(&compressedString)
+
 	//writer would contain Junk after ParseDump
 	ctx, err := stack.ParseDump(r, writer, guessPaths)
-	writer.Reset()
-	buckets := stack.Aggregate(ctx.Goroutines)
+	if err != nil {
+		return " ", err
+	}
+
+	if ctx == nil {
+		return "", err
+	}
+
+	compressedString.Reset()
+	buckets := stack.Aggregate(ctx.Goroutines, stack.AnyPointer)
 	multipleBuckets := len(buckets) > 1
+
 	for _, bucket := range buckets {
 		header := parseBucketHeader(bucket, multipleBuckets)
 		_, _ = io.WriteString(writer, header)
 		_, _ = io.WriteString(writer, stackLines(&bucket.Signature))
 	}
-	return writer.String()
+
+	return compressedString.String(), nil
 }
