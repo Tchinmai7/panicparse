@@ -66,7 +66,6 @@ func calcLengths(buckets []*stack.Bucket) (int, int) {
 
 func ParsePanicString(stackTrace string) (string, error) {
 	r := strings.NewReader(stackTrace)
-	fmt.Printf(stackTrace)
 	var junk bytes.Buffer
 	writer := bufio.NewWriter(&junk)
 
