@@ -64,7 +64,7 @@ func calcLengths(buckets []*stack.Bucket) (int, int) {
 	return srcLen, pkgLen
 }
 
-func ParsePanicString(stackTrace string) (string, error) {
+func ParsePanicString(stackTrace string) ([]string, error) {
 	r := strings.NewReader(stackTrace)
 	var junk bytes.Buffer
 	writer := bufio.NewWriter(&junk)
@@ -72,24 +72,24 @@ func ParsePanicString(stackTrace string) (string, error) {
 	//writer would contain Junk after ParseDump
 	ctx, err := stack.ParseDump(r, writer, false)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	if ctx == nil {
-		return "", errors.New("ctx is null")
+		return nil, errors.New("ctx is null")
 	}
 	stack.Augment(ctx.Goroutines)
 
 	buckets := stack.Aggregate(ctx.Goroutines, stack.AnyPointer)
 	multipleBuckets := len(buckets) > 1
 
-	var compressedString bytes.Buffer
 	srcLen, pkgLen := calcLengths(buckets)
-	for _, bucket := range buckets {
+	out := make([]string, len(buckets))
+
+	for i, bucket := range buckets {
 		header := parseBucketHeader(bucket, multipleBuckets)
-		_, _ = compressedString.WriteString(header)
-		_, _ = compressedString.WriteString(stackLines(&bucket.Signature, srcLen, pkgLen))
+		out[i] = fmt.Sprintf("%s%s", header, stackLines(&bucket.Signature, srcLen, pkgLen))
 	}
 
-	return compressedString.String(), nil
+	return out, nil
 }
