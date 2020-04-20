@@ -80,6 +80,7 @@ func ParsePanicString(stackTrace string) (string, error) {
 	if ctx == nil {
 		return "", errors.New("ctx is null")
 	}
+	stack.Augment(ctx.Goroutines)
 
 	compressedString.Reset()
 	buckets := stack.Aggregate(ctx.Goroutines, stack.AnyPointer)
