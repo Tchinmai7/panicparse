@@ -56,10 +56,7 @@ var defaultPalette = Palette{
 	Arguments:          resetFG,
 }
 
-func writeToConsole(out io.Writer, p *Palette, buckets []*stack.Bucket, pf pathFormat, needsEnv bool, filter, match *regexp.Regexp) error {
-	if needsEnv {
-		_, _ = io.WriteString(out, "\nTo see all goroutines, visit https://github.com/Tchinmai7/panicparse#gotraceback\n\n")
-	}
+func writeToConsole(out io.Writer, p *Palette, buckets []*stack.Bucket, pf pathFormat, filter, match *regexp.Regexp) error {
 	srcLen, pkgLen := calcLengths(buckets, pf)
 	for _, bucket := range buckets {
 		header := p.BucketHeader(bucket, pf, len(buckets) > 1)
@@ -93,7 +90,7 @@ func process(in io.Reader, out io.Writer, p *Palette, s stack.Similarity, pf pat
 	}
 	buckets := stack.Aggregate(c.Goroutines, s)
 	if html == "" {
-		return writeToConsole(out, p, buckets, pf, needsEnv, filter, match)
+		return writeToConsole(out, p, buckets, pf, filter, match)
 	}
 	f, err := os.Create(html)
 	if err != nil {
