@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"io"
 	"strings"
 
 	"github.com/Tchinmai7/panicparse/stack"
@@ -68,8 +67,8 @@ func calcLengths(buckets []*stack.Bucket) (int, int) {
 func ParsePanicString(stackTrace string) (string, error) {
 	r := strings.NewReader(stackTrace)
 	fmt.Printf(stackTrace)
-	var compressedString bytes.Buffer
-	writer := bufio.NewWriter(&compressedString)
+	var junk bytes.Buffer
+	writer := bufio.NewWriter(&junk)
 
 	//writer would contain Junk after ParseDump
 	ctx, err := stack.ParseDump(r, writer, false)
@@ -82,15 +81,15 @@ func ParsePanicString(stackTrace string) (string, error) {
 	}
 	stack.Augment(ctx.Goroutines)
 
-	compressedString.Reset()
 	buckets := stack.Aggregate(ctx.Goroutines, stack.AnyPointer)
 	multipleBuckets := len(buckets) > 1
 
+	var compressedString bytes.Buffer
 	srcLen, pkgLen := calcLengths(buckets)
 	for _, bucket := range buckets {
 		header := parseBucketHeader(bucket, multipleBuckets)
-		_, _ = io.WriteString(writer, header)
-		_, _ = io.WriteString(writer, stackLines(&bucket.Signature, srcLen, pkgLen))
+		_, _ = compressedString.WriteString(header)
+		_, _ = compressedString.WriteString(stackLines(&bucket.Signature, srcLen, pkgLen))
 	}
 
 	return compressedString.String(), nil
