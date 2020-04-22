@@ -70,7 +70,7 @@ func ParsePanicString(stackTrace string) ([]string, error) {
 	writer := bufio.NewWriter(&junk)
 
 	//writer would contain Junk after ParseDump
-	ctx, err := stack.ParseDump(r, writer, false)
+	ctx, err := stack.ParseDump(r, writer, true)
 	if err != nil {
 		return nil, err
 	}
@@ -87,8 +87,11 @@ func ParsePanicString(stackTrace string) ([]string, error) {
 	out := make([]string, len(buckets))
 
 	for i, bucket := range buckets {
-		header := parseBucketHeader(bucket, multipleBuckets)
-		out[i] = fmt.Sprintf("%s%s", header, stackLines(&bucket.Signature, srcLen, pkgLen))
+		if bucket.First {
+			header := parseBucketHeader(bucket, multipleBuckets)
+
+			out[i] = fmt.Sprintf("%s%s", header, stackLines(&bucket.Signature, srcLen, pkgLen))
+		}
 	}
 
 	return out, nil
