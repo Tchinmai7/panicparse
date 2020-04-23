@@ -17,15 +17,9 @@
 package main
 
 import (
-	"fmt"
 	"os"
-
-	"github.com/Tchinmai7/panicparse/internal"
 )
 
 func main() {
-	if err := internal.Main(); err != nil {
-		fmt.Fprintf(os.Stderr, "Failed: %s\n", err)
-		os.Exit(1)
-	}
+	os.Exit(1)
 }
